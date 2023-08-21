@@ -9,17 +9,21 @@ const app = new PIXI.Application({
 // Agregar la vista de la aplicación al DOM
 document.body.appendChild(app.view as unknown as Node);
 
-const bunny = PIXI.Sprite.from('https://pixijs.com/assets/bunny.png');
+const deadCellSprite = PIXI.Sprite.from('/images/blackShape.png');
 
-app.stage.addChild(bunny);
+app.stage.addChild(deadCellSprite);
 
 // center the sprite's anchor point
-bunny.anchor.set(0.5);
+deadCellSprite.anchor.set(0.5);
+deadCellSprite.width = app.screen.width / 30;
+deadCellSprite.height = app.screen.height / 30;
 
 // move the sprite to the center of the screen
-bunny.x = app.screen.width / 2;
-bunny.y = app.screen.height / 2;
+// deadCellSprite.x = app.screen.width / 2;
+// deadCellSprite.y = app.screen.height / 2;
+deadCellSprite.x = 0;
+deadCellSprite.y = 0;
 
 setInterval(() => {
-    bunny.x += 1;
+    // deadCellSprite.x += 5;
 }, 1000);
