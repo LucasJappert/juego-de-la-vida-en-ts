@@ -1,29 +1,32 @@
 import './style.css';
-import * as PIXI from 'pixi.js';
+import Game from "./models/game.model";
 
-const app = new PIXI.Application({
-    background: '#1099bb',
-    resizeTo: window,
-});
+const game = new Game();
+game.StartGame();
 
-// Agregar la vista de la aplicación al DOM
-document.body.appendChild(app.view as unknown as Node);
+// const app = new PIXI.Application({
+//     background: '#1099bb',
+//     resizeTo: window,
+// });
 
-const deadCellSprite = PIXI.Sprite.from('/images/blackShape.png');
+// // Agregar la vista de la aplicación al DOM
+// document.body.appendChild(app.view as unknown as Node);
 
-app.stage.addChild(deadCellSprite);
+// const deadCellSprite = PIXI.Sprite.from('/images/blackShape.png');
 
-// center the sprite's anchor point
-deadCellSprite.anchor.set(0.5);
-deadCellSprite.width = app.screen.width / 30;
-deadCellSprite.height = app.screen.height / 30;
+// app.stage.addChild(deadCellSprite);
 
-// move the sprite to the center of the screen
-// deadCellSprite.x = app.screen.width / 2;
-// deadCellSprite.y = app.screen.height / 2;
-deadCellSprite.x = 0;
-deadCellSprite.y = 0;
+// // center the sprite's anchor point
+// deadCellSprite.anchor.set(0.5);
+// deadCellSprite.width = app.screen.width / 30;
+// deadCellSprite.height = app.screen.height / 30;
 
-setInterval(() => {
-    // deadCellSprite.x += 5;
-}, 1000);
+// // move the sprite to the center of the screen
+// // deadCellSprite.x = app.screen.width / 2;
+// // deadCellSprite.y = app.screen.height / 2;
+// deadCellSprite.x = 0;
+// deadCellSprite.y = 0;
+
+// setInterval(() => {
+//     // deadCellSprite.x += 5;
+// }, 1000);

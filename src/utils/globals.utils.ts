@@ -1,8 +1,10 @@
 import * as PIXI from 'pixi.js';
 
+const GRID_SIZE = 30;
+
 const app = new PIXI.Application({
-    background: '#1099bb',
+    background: '#999',
     resizeTo: window,
 });
 
-export { app };
+export { app, GRID_SIZE, PIXI };
