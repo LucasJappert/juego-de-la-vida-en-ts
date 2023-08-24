@@ -3,32 +3,42 @@ import { GRID_SIZE } from "../utils/globals.utils";
 
 
 export default class Matriz {
-    private rows!: Cel[][];
+    private cols!: Cel[][];
 
     constructor() {
-        this.rows = [];
-        for (let row = 0; row < GRID_SIZE; row++) {
-            const newRow: Cel[] = [];
-            for (let col = 0; col < GRID_SIZE; col++) {
-                newRow.push(new Cel(col, row));
+        this.cols = [];
+        for (let col = 0; col < GRID_SIZE; col++) {
+            const newCol: Cel[] = [];
+            for (let row = 0; row < GRID_SIZE; row++) {
+                newCol.push(new Cel(col, row));
             }
-            this.rows.push(newRow);
+            this.cols.push(newCol);
         }
     }
 
     Update() {
-        for (let row = 0; row < GRID_SIZE; row++) {
-            for (let col = 0; col < GRID_SIZE; col++) {
-                const cel = this.rows[row][col];
-                cel.Update();
+        for (let col = 0; col < GRID_SIZE; col++) {
+            for (let row = 0; row < GRID_SIZE; row++) {
+                // if (col == 2 && row == 5) {
+                //     console.log("asd");
+                // }
+                const cel = this.cols[col][row];
+                cel.Update(this.cols);
             }
         }
+        for (let col = 0; col < GRID_SIZE; col++) {
+            for (let row = 0; row < GRID_SIZE; row++) {
+                this.cols[col][row].ResetStatusBeforeCheckNeigthboring();
+            }
+        }
+
+        console.log(this.cols.flat().filter(x => x.GetStatus() == "alive").length);
     }
 
     Draw() {
-        for (let row = 0; row < GRID_SIZE; row++) {
-            for (let col = 0; col < GRID_SIZE; col++) {
-                const cel = this.rows[row][col];
+        for (let col = 0; col < GRID_SIZE; col++) {
+            for (let row = 0; row < GRID_SIZE; row++) {
+                const cel = this.cols[col][row];
                 cel.Draw();
             }
         }
