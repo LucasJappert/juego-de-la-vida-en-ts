@@ -21,7 +21,7 @@ export default class Game {
     StartGame() {
         // app.ticker.maxFPS = 1;
         // app.ticker.minFPS = 1;
-        console.log(app.ticker.FPS);
+        console.log(`FPS: ${app.ticker.FPS}`);
 
         app.ticker.add(() => {
             this.GameLoop();

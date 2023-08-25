@@ -2,7 +2,9 @@ import './style.css';
 import Game from "./models/game.model";
 
 const game = new Game();
-game.StartGame();
+setTimeout(() => {
+    game.StartGame();
+}, 100);
 
 // const app = new PIXI.Application({
 //     background: '#1099bb',

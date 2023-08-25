@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 import Game from "../models/game.model";
 
 const GRID_SIZE = 40;
-const LOOP_UPDATE_TIME_IN_MILLISECONDS = 100;
+const LOOP_UPDATE_TIME_IN_MILLISECONDS = 20;
 
 const app = new PIXI.Application({
     background: '#999',

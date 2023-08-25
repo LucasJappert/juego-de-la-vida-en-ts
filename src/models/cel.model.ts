@@ -65,10 +65,10 @@ export default class Cel extends PIXI.Sprite {
         super();
 
         this.width = (app.screen.width) / GRID_SIZE;
-        this.height = (app.screen.height - 50) / GRID_SIZE;
+        this.height = (app.screen.height) / GRID_SIZE;
 
         this.x = x * this.width + this.width / 2;
-        this.y = y * this.height + this.height / 2 + 50;
+        this.y = y * this.height + this.height / 2;
         this.colIndex = x;
         this.rowIndex = y;
 
@@ -79,11 +79,14 @@ export default class Cel extends PIXI.Sprite {
 
         // if (Math.random() > 0.9) this.SetStatusToAlive();
         // if (aliveCells.find(item => item[0] == x && item[1] == y)) this.SetStatusToAlive();
-        if (blockLayingPattern.find(item => item[0] == x && item[1] == y)) this.SetStatusToAlive();
+        if (gliderGunPattern.find(item => item[0] == x && item[1] == y)) {
+            this.SetStatusToAlive();
+            this.ResetStatusBeforeCheckNeigthboring();
+        };
 
         app.stage.addChild(this);
 
-        this.SetCoordinateText();
+        // this.SetCoordinateText();
     }
 
     private SetCoordinateText() {
@@ -141,22 +144,20 @@ export default class Cel extends PIXI.Sprite {
         //TODO: Agregar test para chequear este metodo
         const neigthboringCells = this.GetNeigthboringCells(cellsMatrix);
         let aliveNeigthboringCells = 0;
-        // neigthboringCells.forEach(cell => {
-        //     if (cell?.GetStatus() == "alive") aliveNeigthboringCells += 1;
-        // });
+
         for (let i = 0; i < neigthboringCells.length; i++) {
             const cell = neigthboringCells[i];
             if (cell?.GetStatusBeforeCheckNeigthboring() == "alive") aliveNeigthboringCells += 1;
-
         }
-        // let aliveNeigthboringCells = this.GetAliveCells(neigthboringCells);
 
         if (this.AmIAlive()) {
-            if (![2, 3].includes(aliveNeigthboringCells)) this.SetStatusToDead();
-            return;
+            if (![2, 3].includes(aliveNeigthboringCells)) return this.SetStatusToDead();
         }
 
-        if ([3].includes(aliveNeigthboringCells)) this.SetStatusToAlive();
+        if (!this.AmIAlive()) {
+            if ([3].includes(aliveNeigthboringCells)) this.SetStatusToAlive();
+        }
+
     }
 
     Draw() {

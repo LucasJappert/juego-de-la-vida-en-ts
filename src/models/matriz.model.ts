@@ -19,20 +19,12 @@ export default class Matriz {
     Update() {
         for (let col = 0; col < GRID_SIZE; col++) {
             for (let row = 0; row < GRID_SIZE; row++) {
-                // if (col == 2 && row == 5) {
-                //     console.log("asd");
-                // }
                 const cel = this.cols[col][row];
                 cel.Update(this.cols);
             }
         }
-        // for (let col = 0; col < GRID_SIZE; col++) {
-        //     for (let row = 0; row < GRID_SIZE; row++) {
-        //         this.cols[col][row].ResetStatusBeforeCheckNeigthboring();
-        //     }
-        // }
 
-        console.log(this.cols.flat().filter(x => x.GetStatus() == "alive").length);
+        // console.log(this.cols.flat().filter(x => x.GetStatus() == "alive").length);
     }
 
     Draw() {
