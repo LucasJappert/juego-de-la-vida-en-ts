@@ -1,10 +1,11 @@
-import { app } from "../utils/globals.utils";
+import { app, LOOP_UPDATE_TIME_IN_MILLISECONDS } from "../utils/globals.utils";
 import Matriz from "./matriz.model";
 
 
 export default class Game {
     private matriz: Matriz = new Matriz();
     private static pause: boolean = false;
+    private static infinityWorld = false;
     private lastUpdate: Date = new Date();
 
     constructor() {
@@ -12,6 +13,9 @@ export default class Game {
     }
     static SetPause(value: boolean) {
         Game.pause = value;
+    }
+    static GetInfinityWorld() {
+        return Game.infinityWorld;
     }
 
     StartGame() {
@@ -34,7 +38,7 @@ export default class Game {
     
     private Update() {
         const diffInMilliseconds = new Date().getTime() - this.lastUpdate.getTime();
-        if (diffInMilliseconds > 1000) {
+        if (diffInMilliseconds > LOOP_UPDATE_TIME_IN_MILLISECONDS) {
             this.matriz.Update();
             this.lastUpdate = new Date();
         }

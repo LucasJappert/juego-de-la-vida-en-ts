@@ -26,11 +26,11 @@ export default class Matriz {
                 cel.Update(this.cols);
             }
         }
-        for (let col = 0; col < GRID_SIZE; col++) {
-            for (let row = 0; row < GRID_SIZE; row++) {
-                this.cols[col][row].ResetStatusBeforeCheckNeigthboring();
-            }
-        }
+        // for (let col = 0; col < GRID_SIZE; col++) {
+        //     for (let row = 0; row < GRID_SIZE; row++) {
+        //         this.cols[col][row].ResetStatusBeforeCheckNeigthboring();
+        //     }
+        // }
 
         console.log(this.cols.flat().filter(x => x.GetStatus() == "alive").length);
     }
@@ -39,6 +39,7 @@ export default class Matriz {
         for (let col = 0; col < GRID_SIZE; col++) {
             for (let row = 0; row < GRID_SIZE; row++) {
                 const cel = this.cols[col][row];
+                cel.ResetStatusBeforeCheckNeigthboring();
                 cel.Draw();
             }
         }
